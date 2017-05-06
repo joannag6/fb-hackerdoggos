@@ -130,6 +130,12 @@ class ChatBox extends Component {
         const { data } = res;
 
         switch (data.intent.type) {
+          case 'troll_user':
+            if 'song' in data {
+              msg = new SpeechSynthesisUtterance(data['song']);
+              msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+              speechSynthesis.speak(msg);
+            }
           case 'get_recent_posts':
             msg = new SpeechSynthesisUtterance("Here's the latest post on " + data.intent.person + "'s timeline.");
             msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];

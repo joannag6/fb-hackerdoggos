@@ -78,8 +78,15 @@ class Bubble extends Component {
     console.log("RENDERING CONTENT");
     console.log(this.props.data);
 
-
     switch (this.props.data.intent.type) {
+      case 'troll_user':
+        if 'song' in this.props.data {
+          return this.props.data['song']
+        } else {
+          return (<img src={this.props.data.image_url} />);
+        }
+
+        
       case 'get_birthday':
         return ( this.props.data.intent.person + "'s birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
       case 'get_recent_posts':
