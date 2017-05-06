@@ -131,7 +131,7 @@ class ChatBox extends Component {
 
         switch (data.intent.type) {
           case 'troll_user':
-            if 'song' in data {
+            if (data.song !== undefined) {
               msg = new SpeechSynthesisUtterance(data['song']);
               msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
               speechSynthesis.speak(msg);

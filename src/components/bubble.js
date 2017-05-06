@@ -80,7 +80,7 @@ class Bubble extends Component {
 
     switch (this.props.data.intent.type) {
       case 'troll_user':
-        if 'song' in this.props.data {
+        if (this.props.data !== undefined) {
           return this.props.data['song']
         } else {
           return (<img src={this.props.data.image_url} />);
