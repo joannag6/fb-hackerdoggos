@@ -94,6 +94,19 @@ class Bubble extends Component {
             </div>
           </div>
         );
+      case 'get_nearby_events':
+        return this.props.data.events.map((fb_event, index) => {
+          return (
+            <div key={index} style={{ marginBottom: "10px" }}>
+              <div className="fb-post-card">
+                <a href={ "https://www.facebook.com/events/" + fb_event.id } style={{ color: '#3B5998', fontWeight: 'bold' }}> { fb_event.name } </a>
+                <div style={{ color: '#90949c', fontSize: '0.9em', fontWeight: '200', marginBottom: '15px' }}> { fb_event.description } </div>
+                <div> { this.formatDateTime(fb_event.start_time) + " to " + this.formatDateTime(fb_event.end_time) } </div>
+                <div > { fb_event.place.name } </div>
+              </div>
+            </div>
+          );
+        });
     }
   }
 
