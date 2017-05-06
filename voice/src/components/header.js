@@ -13,11 +13,6 @@ class Header extends Component {
         </a>
       );
     }
-    // return (
-    //   <a className="right" style={{cursor: 'pointer'}}>
-    //     <img id="profile-pic" src="media/dp.jpg" alt="profile pic"/>
-    //   </a>
-    // );
   }
 
   render() {
@@ -27,9 +22,8 @@ class Header extends Component {
           <div className="nav-wrapper container">
             <div
               href="#"
-              className="brand-logo center"
-              style={{color: '#319626', cursor: 'default', fontFamily: 'Pacifico'}}>
-              <span>Voice</span>
+              className="brand-logo center">
+              <span style={{color: '#319626', cursor: 'default', fontFamily: 'Pacifico'}}>Voice</span>
               <img id="logo-image" src="media/logo.png" style={{marginLeft: '10px'}} alt="logo"/>
             </div>
             {this.renderStatus()}

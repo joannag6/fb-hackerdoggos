@@ -6,6 +6,38 @@
  * Made By MaterializeCSS.com
  */
 
+.login-container a {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  min-width: 180px;
+  padding: 5px 10px;
+  width: 20%;
+}
+
+#big-logo-image {
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 200px;
+}
+
+.btn-facebook {
+  background-color: #3B5998 !important; /* FB blue */
+  font-family: "Helvetica Neue", helvetica;
+  text-transform: none;
+}
+
+.not-logged-in {
+  background: #92DB3A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(white, #92DB3A) no-repeat center center fixed; /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(white, #92DB3A) no-repeat center center fixed; /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(white, #92DB3A) no-repeat center center fixed; /* For Firefox 3.6 to 15 */
+  background: linear-gradient(white, #92DB3A) no-repeat center center fixed; /* Standard syntax */
+  background-size: cover;
+}
+
 #logo-image, #profile-pic {
   height: 40px;
   width: 40px;
@@ -14,6 +46,7 @@
 #profile-pic {
   border-radius: 2px;
   margin-bottom: 5px;
+  object-fit: cover;
   vertical-align: middle;
 }
 
