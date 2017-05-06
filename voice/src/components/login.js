@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { userLoggedIn } from '../actions/index';
+import { userLoggedIn, tokenObtained } from '../actions/index';
 
 class Login extends Component {
   constructor(props) {
@@ -14,8 +14,8 @@ class Login extends Component {
   onClick() {
     const provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('user_birthday');
-    provider.addScope('user_birthday');
-    provider.addScope('user_birthday');
+    provider.addScope('user_posts');
+    provider.addScope('user_friends');
 
     provider.setCustomParameters({
       'display': 'popup'
@@ -34,10 +34,7 @@ class Login extends Component {
       console.log(user);
 
       instance.props.userLoggedIn(user);
-      console.log("RESULT");
-      console.log(result);
-      console.log("TOKEN");
-      console.log(token);
+      instance.props.tokenObtained(token);
       instance.setState({
         loggedIn: true
       });
@@ -96,4 +93,4 @@ class Login extends Component {
   }
 }
 
-export default connect(null, { userLoggedIn })(Login);
+export default connect(null, { userLoggedIn, tokenObtained })(Login);
