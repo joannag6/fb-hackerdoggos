@@ -86,9 +86,13 @@ class Login extends Component {
           className="btn btn-facebook blue"
           onClick={this.onClick.bind(this)}
         >
-          <span className="fa fa-facebook-official" style={{marginRight: '10px'}}></span>
+          <span className="fa fa-facebook-official" style={{margin: '0px 5px'}}></span>
           Login with Facebook
         </a>
+
+        <div style={{ color: "white", fontFamily: "Fjalla One", fontSize: "2em", marginTop: '100px', textAlign: 'center' }}>
+          #FBHACK17
+        </div>
       </div>
     );
   }
