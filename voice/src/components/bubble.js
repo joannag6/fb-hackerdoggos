@@ -56,13 +56,13 @@ class Bubble extends Component {
   }
 
   parseMessage() {
-    
+
   }
 
   renderContent() {
     if (this.props.isUser) {
       return ( this.props.data );
-    }
+    } 
 
     if (this.props.data.intent === "birthday") {
       return ( this.props.data.name + "'s birthday is on " + this.formatDate(this.props.data.birthday.split("/")) + "." );

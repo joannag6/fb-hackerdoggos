@@ -136,22 +136,50 @@ class ChatBox extends Component {
     }
 
     const { messages } = this.state;
-    const { text } = messages[messages.length-1];
+    const { data } = messages[messages.length-1];
 
     const { token } = this.props;
+
+    const instance = this;
+    let newList = instance.state.messages.slice();
+    newList.push({
+      data: '...',
+      isUser: false
+    });
+    instance.setState({
+      messages: newList
+    });
 
     // Send a POST request
     axios({
       method: 'post',
       url: 'http://172.22.112.93:1337/hackerdoggos/api/v1/query',
       data: {
-        text,
+        text: data,
         token
       }
     })
       .then((res) => {
-        console.log(res);
+        let newList = instance.state.messages.slice();
+        newList.pop();
+        instance.setState({
+          messages: newList
+        });
+
+        const { data } = res;
+
+        switch (data.intent.type) {
+          case 'get_recent_posts':
+            console.log("RECENT POSTS");
+            break;
+          case 'get_birthday':
+            console.log('BIRTHDAY');
+            break;
+        }
         // this.addMessage(res.data)
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
