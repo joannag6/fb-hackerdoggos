@@ -18,9 +18,8 @@ class ChatBox extends Component {
     const msg = new SpeechSynthesisUtterance(`Hey! I'm Voice!`);
     msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
     speechSynthesis.speak(msg);
-
   }
-
+  
   onRecord() {
     // speech to text logic
     console.log("SAY SOMETHING");
@@ -34,7 +33,7 @@ class ChatBox extends Component {
       const instance = this;
       let newList = instance.state.messages.slice();
       newList.push({
-        text: '',
+        text: '...',
         isUser: true
       });
       instance.setState({
@@ -71,6 +70,15 @@ class ChatBox extends Component {
   }
 
   onStop() {
+    // Removes empty "..." if no input received.
+    if (this.state.messages[this.state.messages.length-1].text === "...") {
+      let newList = this.state.messages.slice();
+      newList.pop();
+      this.setState({
+        messages: newList
+      });
+    }
+
     this.recognition.stop();
     const { messages } = this.state;
     const lastMessage = messages[messages.length-1];

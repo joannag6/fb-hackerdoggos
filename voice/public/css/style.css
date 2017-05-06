@@ -6,19 +6,30 @@
  * Made By MaterializeCSS.com
  */
 
-body {
-  background-color: #ececec; /* light grey */
+#logo-image {
+  height: 40px;
+  width: 40px;
 }
 
 .icon-block {
   padding: 0 15px;
 }
+
 .icon-block .material-icons {
 	font-size: inherit;
 }
 
 .header-green {
-  background-color: #319626; /* green */
+  background-color: #ececec; /* light grey */
+  border: 3px solid transparent;
+  -moz-border-image: -moz-linear-gradient(left, #319626 0%, #d0ef43 100%);
+  -webkit-border-image: -webkit-linear-gradient(left, #319626 0%, #d0ef43 100%);
+  border-image: linear-gradient(to right, #319626 0%, #d0ef43 100%);
+  border-image-slice: 1;
+  border-left: 0px;
+  border-right:0px;
+  border-top:0px;
+  box-shadow: none;
 }
 
 #mic-button {
@@ -26,7 +37,7 @@ body {
 }
 
 #mic-container {
-  background-color: #dc4a35 !important;
+  background-color: #dc4a35 !important; /* red */
   margin: 0 auto;
 }
 
@@ -37,6 +48,8 @@ body {
   width: 100%;
 }
 
+/*lime green #d0ef43*/
+
 .footer-copyright.light-grey {
-  background-color: rgba(212, 212, 212, 0.8); /* grey */
+  background-color: transparent; /* transparent */
 }
