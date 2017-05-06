@@ -61,6 +61,11 @@ class Bubble extends Component {
     );
   }
 
+  getPageUrl(url) {
+    url = url.split("/").join("%2F");
+    return url.split(":").join("%3A");
+  }
+
   renderContent() {
     if (this.props.isUser) {
       return ( this.props.data );
@@ -105,6 +110,12 @@ class Bubble extends Component {
                 <div > { fb_event.place.name } </div>
               </div>
             </div>
+          );
+        });
+      case 'get_likes':
+        return this.props.data.likes.data.map((like, index) => {
+          return (
+            <iframe key={index} src={"https://www.facebook.com/plugins/page.php?href="+ this.getPageUrl(like.link) +"&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"} width="340" height="130" style={{border:'none', marginBottom:"10px", overflow:'hidden'}} scrolling="no" frameBorder="0" allowTransparency="true"></iframe>
           );
         });
     }

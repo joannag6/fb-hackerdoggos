@@ -16,6 +16,7 @@ class Login extends Component {
     provider.addScope('user_birthday');
     provider.addScope('user_posts');
     provider.addScope('user_friends');
+    provider.addScope('user_likes');
     provider.addScope('publish_actions');
 
     provider.setCustomParameters({
