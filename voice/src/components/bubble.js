@@ -21,9 +21,15 @@ class Bubble extends Component {
     return this.formatDate([dateList[1], dateList[2].slice(0,2)]);
   }
 
-  getPostUrl(post) {
-    let idTuple = post.id.split("_");
+  getPostUrl(post_id) {
+    let idTuple = post_id.split("_");
     return "https://www.facebook.com/" + idTuple[0] + "/posts/" + idTuple[1];
+  }
+
+  renderPostLink(post_id) {
+    return (
+      <a href={ this.getPostUrl(post_id) } style={{ color: '#3B5998' }}><u>post</u></a>
+    );
   }
 
   parseStory(str) {
@@ -55,10 +61,6 @@ class Bubble extends Component {
     );
   }
 
-  parseMessage() {
-    
-  }
-
   renderContent() {
     if (this.props.isUser) {
       return ( this.props.data );
@@ -68,17 +70,18 @@ class Bubble extends Component {
       return ( this.props.data.name + "'s birthday is on " + this.formatDate(this.props.data.birthday.split("/")) + "." );
     } else if (this.props.data.intent === "latest_post") {
 
-      let latestPost = this.props.data.data[0]; // only get first one
+      let latestPost = this.props.data.data[4]; // only get first one
 
       var parsedStory = this.parseStory(latestPost.story);
 
       return (
         <div>
-          <div className="summary">{ this.props.data.name + " posted recently. Click below to view the post." }</div>
-          <a href={ this.getPostUrl(latestPost) }>Post!</a>
-          <div> { this.parseStory(latestPost.story) } </div>
-          <div style={{ color: '#90949c', fontSize: '0.9em', fontWeight: '200' }}> { this.formatDateTime(latestPost.created_time) } </div>
-          <div> this.parseMessage(latestPost.message) </div>
+          <div className="summary">{"Here's the latest "} { this.renderPostLink(latestPost.id) } { "on " + this.props.data.name + "'s timeline." }</div>
+          <div className="fb-post-card">
+            <div> { this.parseStory(latestPost.story) } </div>
+            <div style={{ color: '#90949c', fontSize: '0.9em', fontWeight: '200', marginBottom: '10px' }}> { this.formatDateTime(latestPost.created_time) } </div>
+            <div > { latestPost.message } </div>
+          </div>
         </div>
       );
       // <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fbambimac%2Fposts%2F10157659674270581&width=500&show_text=true&height=497&appId" width="300" height="300" style={{border:'none', borderRadius:'15px', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', overflow:'hidden'}} scrolling="no" allowTransparency="true"></iframe>
@@ -103,7 +106,7 @@ class Bubble extends Component {
         float: (this.props.isUser) ? 'right' : 'left',
         verticalAlign: 'middle',
         marginBottom: '0.5rem',
-        maxWidth: '600px',
+        maxWidth: '400px',
         padding: '10px',
         paddingBottom: (this.props.isUser) ? '10px' : '5px',
         width: 'initial',
