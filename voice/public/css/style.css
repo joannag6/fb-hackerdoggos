@@ -6,9 +6,17 @@
  * Made By MaterializeCSS.com
  */
 
+body {
+  background-color: #e8efe8;
+}
+
 .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+
+.header-green {
+  background-color: #319626;
 }
