@@ -78,8 +78,18 @@ class Bubble extends Component {
     console.log("RENDERING CONTENT");
     console.log(this.props.data);
 
-
     switch (this.props.data.intent.type) {
+      case 'troll_user':
+        if (this.props.data !== undefined) {
+          if (this.props.data.song !== undefined) {
+            return this.props.data['song']
+          } else {
+          return (
+            <img src={this.props.data['image_url']} />
+            );
+          }
+        }
+
       case 'get_birthday':
         let pronoun = this.props.data.intent.person === "my" ? "Your" : this.props.data.intent.person + "'s"
         return ( pronoun + " birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
