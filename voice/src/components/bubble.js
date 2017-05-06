@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 
 class Bubble extends Component {
   render() {
-    return (
-      <div className="row" style={{marginBottom: '0'}}>
-        <div className="card" style={this.getStyles().cardStyle}>
-          {this.props.children}
+    if (this.props.isUser) {
+      return (
+        <div className="row" style={{marginBottom: '0'}}>
+          <div className="card" style={this.getStyles().cardStyle}>
+            {this.props.children}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="row" style={{marginBottom: '0'}}>
+          <div className="card" style={this.getStyles().cardStyle}>
+            <div className="summary">{this.props.children}</div>
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fbambimac%2Fposts%2F10157659674270581&width=500&show_text=true&height=497&appId" width="300" height="300" style={{border:'none', borderRadius:'15px', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', overflow:'hidden'}} scrolling="no" allowTransparency="true"></iframe>
+          </div>
+        </div>
+      );
+    }
   }
 
   getStyles() {
@@ -21,6 +32,7 @@ class Bubble extends Component {
         marginBottom: '0.5rem',
         maxWidth: '600px',
         padding: '10px',
+        paddingBottom: (this.props.isUser) ? '10px' : '5px',
         width: 'initial',
         wordWrap: 'break-word'
       }

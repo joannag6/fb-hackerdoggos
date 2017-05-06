@@ -70,6 +70,8 @@ class ChatBox extends Component {
   }
 
   onStop() {
+    this.recognition.stop();
+
     // Removes empty "..." if no input received.
     if (this.state.messages[this.state.messages.length-1].text === "...") {
       let newList = this.state.messages.slice();
@@ -77,9 +79,10 @@ class ChatBox extends Component {
       this.setState({
         messages: newList
       });
+      // this.addMessage();
+      return;
     }
 
-    this.recognition.stop();
     const { messages } = this.state;
     const lastMessage = messages[messages.length-1];
 
@@ -94,7 +97,14 @@ class ChatBox extends Component {
   }
 
   addMessage() {
-
+    let newList = this.state.messages.slice();
+    newList.push({
+      text: 'Bambi just posted this:   (summary)',
+      isUser: false
+    });
+    this.setState({
+      messages: newList
+    });
   }
 
   renderMessages() {
