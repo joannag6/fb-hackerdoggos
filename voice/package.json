@@ -8,13 +8,7 @@
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "react-router": "^4.1.1",
-<<<<<<< HEAD
     "react-router-dom": "^4.1.1"
-=======
-    "react-router-dom": "^4.1.1",
-    "react-sound": "^0.6.1",
-    "react-speech": "^0.3.2"
->>>>>>> 0ab7d258946f69fb9e25a2f426c4cd37e8e36bc5
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
