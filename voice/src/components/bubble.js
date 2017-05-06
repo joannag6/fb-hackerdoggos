@@ -12,9 +12,12 @@ class Bubble extends Component {
 
 const styles = {
   cardStyle: {
-    width: '200px',
+    borderRadius: '30',
     float: 'right',
-    borderRadius: '30'
+    maxWidth: '300px',
+    padding: '13px',
+    width: 'initial',
+    wordWrap: 'break-word',
   }
 };
 
