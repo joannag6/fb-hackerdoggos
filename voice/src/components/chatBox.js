@@ -19,9 +19,6 @@ class ChatBox extends Component {
     speechSynthesis.speak(msg);
   }
 
-  translate() {
-  }
-
   onRecord() {
     // speech to text logic
     console.log("SAY SOMETHING");
