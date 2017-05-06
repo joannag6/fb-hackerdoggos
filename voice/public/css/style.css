@@ -10,10 +10,6 @@ body {
   background-color: #ececec; /* light grey */
 }
 
-.light-green-gray {
-  background-color: #e8efe8;
-}
-
 .icon-block {
   padding: 0 15px;
 }
@@ -34,8 +30,13 @@ body {
   margin: 0 auto;
 }
 
-footer {
-  width: 100%;
-  position: absolute;
+.page-footer {
+  background-color: transparent;
   bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.footer-copyright.light-grey {
+  background-color: rgba(212, 212, 212, 0.8); /* grey */
 }

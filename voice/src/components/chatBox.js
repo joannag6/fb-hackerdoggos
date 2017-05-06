@@ -21,6 +21,20 @@ class ChatBox extends Component {
           </iframe>
         </Bubble>
         <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
       </div>
     );
   }
