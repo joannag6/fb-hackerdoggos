@@ -4,11 +4,16 @@ import {
   Route
 } from 'react-router-dom';
 import firebase from 'firebase';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
+import reducers from './reducers';
 import './App.css';
 import Header from './components/header';
 import ChatBox from './components/chatBox';
 import Login from './components/login';
+
+const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 class App extends Component {
   componentDidMount() {
@@ -33,14 +38,16 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <Header />
+      <Provider store={createStoreWithMiddleware(reducers)}>
+        <Router>
+          <div>
+            <Header />
 
-          <Route exact path="/" component={Login}/>
-          <Route path="/main" component={ChatBox}/>
-        </div>
-      </Router>
+            <Route exact path="/" component={Login}/>
+            <Route path="/main" component={ChatBox}/>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

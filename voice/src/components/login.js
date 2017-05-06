@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Route, Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { userLoggedIn } from '../actions/index';
 
 class Login extends Component {
   constructor(props) {
@@ -27,6 +29,11 @@ class Login extends Component {
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
+
+      console.log("SIGNED IN");
+      console.log(user);
+
+      instance.props.userLoggedIn(user);
       console.log("RESULT");
       console.log(result);
       console.log("TOKEN");
@@ -38,6 +45,8 @@ class Login extends Component {
       console.log(instance.state.loggedIn);
       // ...
     }).catch(function(error) {
+      console.log(error);
+      console.log("ERROR OMG");
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
@@ -69,4 +78,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null, { userLoggedIn })(Login);
