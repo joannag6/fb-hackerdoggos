@@ -81,15 +81,19 @@ class ChatBox extends Component {
 
     this.recognition.stop();
     const { messages } = this.state;
-    const lastMessage = messages[messages.length-1];
+    const { text } = messages[messages.length-1];
 
-    axios.post('http://172.22.112.93:23232/hackerdoggos/api/v1/query', {
-      text: lastMessage
-    }).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    });
+    // Send a POST request
+    axios({
+      method: 'post',
+      url: 'http://172.22.112.93:23232/hackerdoggos/api/v1/query',
+      data: {
+        text
+      }
+    })
+      .then((res) => {
+        console.log(res);
+      });
 
   }
 
