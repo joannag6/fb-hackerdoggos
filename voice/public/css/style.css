@@ -7,7 +7,7 @@
  */
 
 body {
-  background-color: #e8efe8;
+  background-color: #ececec; /* light grey */
 }
 
 .icon-block {
@@ -18,5 +18,5 @@ body {
 }
 
 .header-green {
-  background-color: #319626;
+  background-color: #319626; /* green */
 }
