@@ -150,6 +150,12 @@ class ChatBox extends Component {
             msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
             speechSynthesis.speak(msg);
             break;
+          default:
+            msg = new SpeechSynthesisUtterance("Please try another voice command");
+            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+            speechSynthesis.speak(msg);
+            window.alert("Please try another voice command.");
+            break;
         }
         console.log("RESPONSE");
         console.log(res);
@@ -157,6 +163,10 @@ class ChatBox extends Component {
         console.log(res.data);
       })
       .catch(err => {
+        let msg = new SpeechSynthesisUtterance("Please try another voice command");
+        msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+        speechSynthesis.speak(msg);
+        window.alert("Please try another voice command.");
         console.log(err);
       });
   };

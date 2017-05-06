@@ -81,7 +81,8 @@ class Bubble extends Component {
 
     switch (this.props.data.intent.type) {
       case 'get_birthday':
-        return ( this.props.data.intent.person + "'s birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
+        let pronoun = this.props.data.intent.person === "my" ? "Your" : this.props.data.intent.person + "'s"
+        return ( pronoun + " birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
       case 'get_recent_posts':
         console.log("RECENT POSTS");
         console.log(this.props.data);
@@ -113,7 +114,8 @@ class Bubble extends Component {
           );
         });
       case 'get_likes':
-        return this.props.data.likes.data.map((like, index) => {
+        var lessLikes = this.props.data.likes.data.slice(0,10);
+        return lessLikes.map((like, index) => {
           return (
             <iframe key={index} src={"https://www.facebook.com/plugins/page.php?href="+ this.getPageUrl(like.link) +"&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId"} width="340" height="130" style={{border:'none', display:'block', margin:'0 auto', marginBottom:"10px", overflow:'hidden'}} scrolling="no" frameBorder="0" allowTransparency="true"></iframe>
           );
@@ -134,6 +136,7 @@ class Bubble extends Component {
   getStyles() {
     return ({
       cardStyle: {
+        backgroundColor: (this.props.isUser) ? 'white' : '#f3f3f3',
         borderRadius: '20px',
         boxShadow: '4px 4px 2px 0 rgba(0, 0, 0, 0.14), -1px 3px 5px 0 rgba(0, 0, 0, 0.12), 0 0px 7px -2px rgba(0, 0, 0, 0.2)',
         float: (this.props.isUser) ? 'right' : 'left',

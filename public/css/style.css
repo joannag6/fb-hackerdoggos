@@ -79,6 +79,7 @@
 }
 
 .fb-post-card {
+  background-color: white;
   border: 1px solid #e9ebee;
   border-radius: 2px;
   cursor: default;
