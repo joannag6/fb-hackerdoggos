@@ -25,7 +25,7 @@ class ChatBox extends Component {
 
   componentDidMount() {
 
-    scroll = setInterval(function(){ window.scrollBy(0, 1000); }, 10);
+      window.scrollBy(0, 1000);
   }
 
   onRecord() {
@@ -121,6 +121,10 @@ class ChatBox extends Component {
         //   messages: newList
         // });
 
+
+
+          window.scrollBy(0, 1000);
+
             let msg;
 
         const { data } = res;
@@ -133,6 +137,16 @@ class ChatBox extends Component {
             break;
           case 'get_birthday':
             msg = new SpeechSynthesisUtterance(data.intent.person + "'s birthday is on " + this.formatDate(data.birthday.birthday.split("/")));
+            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+            speechSynthesis.speak(msg);
+            break;
+          case 'get_nearby_events':
+            msg = new SpeechSynthesisUtterance("Here are five events around you");
+            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+            speechSynthesis.speak(msg);
+            break;
+          case 'get_likes':
+            msg = new SpeechSynthesisUtterance("Here are things " + ((data.intent.person === "I") ? "you" : data.intent.person) + " like!");
             msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
             speechSynthesis.speak(msg);
             break;
