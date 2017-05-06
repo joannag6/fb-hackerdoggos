@@ -81,6 +81,7 @@
 .fb-post-card {
   border: 1px solid #e9ebee;
   border-radius: 2px;
+  cursor: default;
   margin: 5px 2px;
   padding: 5px 7px;
 }
