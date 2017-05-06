@@ -18,7 +18,7 @@ class Bubble extends Component {
         float: (this.props.isUser) ? 'right' : 'left',
         verticalAlign: 'middle',
         marginBottom: '0.5rem',
-        maxWidth: '300px',
+        maxWidth: '600px',
         padding: '10px',
         width: 'initial',
         wordWrap: 'break-word'
