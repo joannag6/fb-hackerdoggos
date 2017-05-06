@@ -24,9 +24,8 @@ class ChatBox extends Component {
   }
 
   componentDidMount() {
-    const msg = new SpeechSynthesisUtterance(`Hey! I'm Voice!`);
-    msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
-    speechSynthesis.speak(msg);
+
+    scroll = setInterval(function(){ window.scrollBy(0, 1000); }, 10);
   }
 
   onRecord() {
@@ -122,16 +121,22 @@ class ChatBox extends Component {
         //   messages: newList
         // });
 
-        // const { data } = res;
+            let msg;
 
-        // switch (data.intent.type) {
-        //   case 'get_recent_posts':
-        //     console.log("RECENT POSTS");
-        //     break;
-        //   case 'get_birthday':
-        //     console.log('BIRTHDAY');
-        //     break;
-        // }
+        const { data } = res;
+
+        switch (data.intent.type) {
+          case 'get_recent_posts':
+            msg = new SpeechSynthesisUtterance("Here's the latest post on " + data.intent.person + "'s timeline.");
+            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+            speechSynthesis.speak(msg);
+            break;
+          case 'get_birthday':
+            msg = new SpeechSynthesisUtterance(data.intent.person + "'s birthday is on " + this.formatDate(data.birthday.birthday.split("/")));
+            msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+            speechSynthesis.speak(msg);
+            break;
+        }
         console.log("RESPONSE");
         console.log(res);
         this.addMessage(res.data);
@@ -141,6 +146,24 @@ class ChatBox extends Component {
         console.log(err);
       });
   };
+    formatDateTime(datetime) {
+      let dateList = datetime.split("-");
+
+      return this.formatDate([dateList[1], dateList[2].slice(0,2)]);
+    }
+    formatDate(dateList) {
+      var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+      ];
+
+      var day = parseInt(dateList[1]);
+      var monthIndex = parseInt(dateList[0]);
+
+      return monthNames[monthIndex-1] + ' ' + day;
+    }
 
   addMessage(data) {
     console.log("Added message!");
@@ -185,7 +208,8 @@ class ChatBox extends Component {
 
 const styles = {
   containerStyle: {
-    paddingTop: '0.5rem'
+    paddingTop: '0.5rem',
+    marginBottom: '96px'
   },
   textStyle: {
     display: 'flex',

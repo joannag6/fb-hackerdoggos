@@ -73,16 +73,16 @@ class Bubble extends Component {
     console.log("RENDERING CONTENT");
     console.log(this.props.data);
 
+
     switch (this.props.data.intent.type) {
       case 'get_birthday':
         return ( this.props.data.intent.person + "'s birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
       case 'get_recent_posts':
         console.log("RECENT POSTS");
         console.log(this.props.data);
+          let latestPost = this.props.data.feed.data[0]; // only get first one
 
-        let latestPost = this.props.data.feed.data[0]; // only get first one
-
-        var parsedStory = this.parseStory(latestPost.story);
+          var parsedStory = this.parseStory(latestPost.story);
 
         return (
           <div>
