@@ -1,25 +1,98 @@
 import React, { Component } from 'react';
 
 class Bubble extends Component {
-  render() {
-    if (this.props.isUser) {
-      return (
-        <div className="row" style={{marginBottom: '0'}}>
-          <div className="card" style={this.getStyles().cardStyle}>
-            {this.props.children}
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="row" style={{marginBottom: '0'}}>
-          <div className="card" style={this.getStyles().cardStyle}>
-            <div className="summary">{this.props.children}</div>
-            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fbambimac%2Fposts%2F10157659674270581&width=500&show_text=true&height=497&appId" width="300" height="300" style={{border:'none', borderRadius:'15px', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', overflow:'hidden'}} scrolling="no" allowTransparency="true"></iframe>
-          </div>
-        </div>
-      );
+  formatDate(dateList) {
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    var day = parseInt(dateList[1]);
+    var monthIndex = parseInt(dateList[0]);
+
+    return monthNames[monthIndex-1] + ' ' + day;
+  }
+
+  formatDateTime(datetime) {
+    let dateList = datetime.split("-");
+
+    return this.formatDate([dateList[1], dateList[2].slice(0,2)]);
+  }
+
+  getPostUrl(post) {
+    let idTuple = post.id.split("_");
+    return "https://www.facebook.com/" + idTuple[0] + "/posts/" + idTuple[1];
+  }
+
+  parseStory(str) {
+    var strList = str.split(" ");
+    var nameList = [];
+
+    while (strList.length > 0) {
+      var word = strList[0];
+      if (/[A-Z]/.test(word[0])) {
+        nameList.push(word);
+        strList.splice(0, 1);
+      } else {
+        break;
+      }
     }
+
+    name = nameList.join(" ");
+    str = strList.join(" ");
+
+    return (
+      <div>
+        <span style={{ color: '#3B5998', fontWeight: 'bold' }}>
+          { name + " " }
+        </span>
+        <span style={{ color: '#90949c' }}>
+          { str }
+        </span>
+      </div>
+    );
+  }
+
+  parseMessage() {
+    
+  }
+
+  renderContent() {
+    if (this.props.isUser) {
+      return ( this.props.data );
+    }
+
+    if (this.props.data.intent === "birthday") {
+      return ( this.props.data.name + "'s birthday is on " + this.formatDate(this.props.data.birthday.split("/")) + "." );
+    } else if (this.props.data.intent === "latest_post") {
+
+      let latestPost = this.props.data.data[0]; // only get first one
+
+      var parsedStory = this.parseStory(latestPost.story);
+
+      return (
+        <div>
+          <div className="summary">{ this.props.data.name + " posted recently. Click below to view the post." }</div>
+          <a href={ this.getPostUrl(latestPost) }>Post!</a>
+          <div> { this.parseStory(latestPost.story) } </div>
+          <div style={{ color: '#90949c', fontSize: '0.9em', fontWeight: '200' }}> { this.formatDateTime(latestPost.created_time) } </div>
+          <div> this.parseMessage(latestPost.message) </div>
+        </div>
+      );
+      // <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fbambimac%2Fposts%2F10157659674270581&width=500&show_text=true&height=497&appId" width="300" height="300" style={{border:'none', borderRadius:'15px', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', overflow:'hidden'}} scrolling="no" allowTransparency="true"></iframe>
+    }
+  }
+
+  render() {
+    return (
+      <div className="row" style={{marginBottom: '0'}}>
+        <div className="card" style={this.getStyles().cardStyle}>
+        { this.renderContent() }
+        </div>
+      </div>
+    )
   }
 
   getStyles() {
