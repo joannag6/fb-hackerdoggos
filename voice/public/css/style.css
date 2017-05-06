@@ -10,6 +10,10 @@ body {
   background-color: #ececec; /* light grey */
 }
 
+.light-green-gray {
+  background-color: #e8efe8;
+}
+
 .icon-block {
   padding: 0 15px;
 }
@@ -19,4 +23,8 @@ body {
 
 .header-green {
   background-color: #319626; /* green */
+}
+
+#mic-button {
+  align-items: center;
 }

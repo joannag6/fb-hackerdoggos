@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 class Button extends Component {
   render() {
     return (
-      <a className="btn-floating btn-large waves-effect waves-light red">
-        <i className="material-icons">mic</i>
-      </a>
+      <footer className="page-footer light-green-gray">
+        <div className="footer-copyright">
+          <a className="btn-floating btn-large waves-effect waves-light red">
+            <i id="mic-button" className="material-icons">mic</i>
+          </a>
+        </div>
+      </footer>
     );
   }
 }
