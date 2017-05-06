@@ -32,7 +32,7 @@ class ChatBox extends Component {
       const instance = this;
       let newList = instance.state.messages.slice();
       newList.push({
-        text: '',
+        text: '...',
         isUser: true
       });
       instance.setState({
