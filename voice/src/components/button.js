@@ -51,7 +51,7 @@ class Button extends Component {
       <footer className="page-footer">
         <div className="footer-copyright light-grey">
           <a
-            id="mic-container"
+            id="mic-container" style={{marginBottom: '20px'}}
             className={"btn-floating btn-large waves-effect waves-light red " + this.getButtonClasses()}
             onClick={() => this.onClick()}
           >
