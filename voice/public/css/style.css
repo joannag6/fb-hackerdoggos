@@ -30,6 +30,7 @@ body {
 }
 
 #mic-container {
+  background-color: #dc4a35 !important;
   margin: 0 auto;
 }
 
