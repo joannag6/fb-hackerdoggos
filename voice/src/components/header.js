@@ -9,8 +9,8 @@ class Header extends Component {
 
       return (
         <a className="right">
+          <span id="display-name">{this.props.user.user.displayName}</span>
           <img id="profile-pic" src={this.props.user.user.photoURL} />
-          <div id="display-name">{this.props.user.user.displayName}</div>
         </a>
       );
     }
