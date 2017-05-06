@@ -3,6 +3,7 @@ import Header from './header';
 import Bubble from './bubble';
 import Button from './button';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class ChatBox extends Component {
   constructor(props) {
@@ -92,12 +93,15 @@ class ChatBox extends Component {
     const { messages } = this.state;
     const { text } = messages[messages.length-1];
 
+    const { token } = this.props;
+
     // Send a POST request
     axios({
       method: 'post',
       url: 'http://172.22.112.93:23232/hackerdoggos/api/v1/query',
       data: {
-        text
+        text,
+        token
       }
     })
       .then((res) => {
@@ -156,4 +160,8 @@ const styles = {
   }
 };
 
-export default ChatBox;
+function mapStateToProps({ token }) {
+  return { token };
+};
+
+export default connect(mapStateToProps)(ChatBox);
