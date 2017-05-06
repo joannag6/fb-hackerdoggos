@@ -26,7 +26,7 @@ class Button extends Component {
         <a
           id="mic-container"
           className="btn-floating btn-large waves-effect waves-light red"
-          onClick={this.onClick}
+          onClick={this.onClick.bind(this)}
         >
           <i id="mic-button" className="material-icons">mic</i>
         </a>
@@ -36,7 +36,7 @@ class Button extends Component {
         <a
           id="mic-container"
           className="btn-floating btn-large waves-effect waves-light red"
-          onClick={this.onClick}
+          onClick={this.onClick.bind(this)}
         >
           <i id="mic-button" className="material-icons">mic</i>
         </a>

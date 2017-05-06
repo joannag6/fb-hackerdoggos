@@ -29,16 +29,16 @@ class ChatBox extends Component {
       recognition.interimResults = true;
   		recognition.lang = 'en-AU';
   		recognition.start();
+      let finalTranscripts = ''
 
       recognition.onresult = function(event){
-        var interimTranscripts = '';
-        var finalTranscripts;
-        for(var i = event.resultIndex; i < event.results.length; i++){
-          var transcript = event.results[i][0].transcript;
+        let interimTranscripts = '';
+        for (let i = event.resultIndex; i < event.results.length; i++){
+          let transcript = event.results[i][0].transcript;
           transcript.replace("\n", "<br>");
-          if(event.results[i].isFinal){
+          if (event.results[i].isFinal) {
             finalTranscripts += transcript;
-          }else{
+          } else {
             interimTranscripts += transcript;
           }
         }
@@ -83,7 +83,9 @@ class ChatBox extends Component {
           {this.renderMessages()}
         </div>
 
-        <Button onClick={this.onButtonClick.bind(this)} />
+        <Button
+          onClick={this.onButtonClick.bind(this)}
+          onMouseOver={this.onMouseUp.bind(this)} />
       </div>
     );
   }
