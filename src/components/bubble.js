@@ -81,12 +81,15 @@ class Bubble extends Component {
     switch (this.props.data.intent.type) {
       case 'troll_user':
         if (this.props.data !== undefined) {
-          return this.props.data['song']
-        } else {
-          return (<img src={this.props.data.image_url} />);
+          if (this.props.data.song !== undefined) {
+            return this.props.data['song']
+          } else {
+          return (
+            <img src={this.props.data['image_url']} />
+            );
+          }
         }
 
-        
       case 'get_birthday':
         return ( this.props.data.intent.person + "'s birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
       case 'get_recent_posts':

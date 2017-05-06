@@ -136,6 +136,7 @@ class ChatBox extends Component {
               msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
               speechSynthesis.speak(msg);
             }
+            break;
           case 'get_recent_posts':
             msg = new SpeechSynthesisUtterance("Here's the latest post on " + data.intent.person + "'s timeline.");
             msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
