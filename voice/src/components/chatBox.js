@@ -8,6 +8,13 @@ class ChatBox extends Component {
     super(props);
 
     this.recognition = new window.webkitSpeechRecognition();
+    const speechRecognitionList = new window.webkitSpeechGrammarList();
+
+    const grammar = '#JSGF V1.0; grammar names; public <name> = callistus | arvin ;';
+    speechRecognitionList.addFromString(grammar, 1);
+    this.recognition.grammars = speechRecognitionList;
+
+    console.log(this.recognition.grammars);
 
     this.state = {
       messages: []
@@ -70,6 +77,7 @@ class ChatBox extends Component {
   }
 
   onStop() {
+    this.recognition.stop();
     // Removes empty "..." if no input received.
     if (this.state.messages[this.state.messages.length-1].text === "...") {
       let newList = this.state.messages.slice();
@@ -77,9 +85,9 @@ class ChatBox extends Component {
       this.setState({
         messages: newList
       });
+      return;
     }
 
-    this.recognition.stop();
     const { messages } = this.state;
     const { text } = messages[messages.length-1];
 

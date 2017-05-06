@@ -22,6 +22,8 @@ class App extends Component {
       messagingSenderId: "807527296296"
     };
     firebase.initializeApp(config);
+
+    firebase.auth.signOut();
   }
 
   render() {
