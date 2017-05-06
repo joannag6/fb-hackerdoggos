@@ -29,9 +29,9 @@ class Button extends Component {
 
   getButtonClasses() {
     if (this.state.isOn) {
-      return ("animation pulse infinite");
+      return ("animation pulse infinite red-button");
     }
-    return ("");
+    return ("green-button");
   }
 
   renderIcon() {

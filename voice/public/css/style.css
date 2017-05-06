@@ -43,8 +43,15 @@
 }
 
 #mic-container {
-  background-color: #dc4a35 !important; /* red */
   margin: 0 auto;
+}
+
+.red-button {
+  background-color: #dc4a35 !important; /* red */
+}
+
+.green-button {
+  background-color: #319626 !important; /* green */
 }
 
 .page-footer {
@@ -53,8 +60,6 @@
   position: fixed;
   width: 100%;
 }
-
-/*lime green #d0ef43*/
 
 .footer-copyright.light-grey {
   background-color: transparent; /* transparent */
