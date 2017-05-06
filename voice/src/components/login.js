@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { Route, Redirect } from 'react-router';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { loggedIn: false };
+  }
+
   onClick() {
     const provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope('user_birthday');
+    provider.addScope('user_birthday');
+    provider.addScope('user_birthday');
+
     provider.setCustomParameters({
       'display': 'popup'
     });
+
+    const instance = this;
 
     firebase.auth().signInWithPopup(provider)
     .then(function(result) {
@@ -14,8 +27,15 @@ class Login extends Component {
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
+      console.log("RESULT");
+      console.log(result);
       console.log("TOKEN");
       console.log(token);
+      instance.setState({
+        loggedIn: true
+      });
+
+      console.log(instance.state.loggedIn);
       // ...
     }).catch(function(error) {
       // Handle Errors here.
@@ -30,6 +50,14 @@ class Login extends Component {
   }
 
   render() {
+    console.log(this.state.loggedIn);
+    if (this.state.loggedIn) {
+      return (
+        <Route>
+          <Redirect push to="/main"/>
+        </Route>
+      );
+    }
     return (
       <a
         className="btn btn-block btn-social btn-facebook share s_facebook"
