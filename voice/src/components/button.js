@@ -5,7 +5,11 @@ class Button extends Component {
     return (
       <footer className="page-footer">
         <div className="footer-copyright light-grey">
-          <a id="mic-container" className="btn-floating btn-large waves-effect waves-light red">
+          <a
+            id="mic-container"
+            className="btn-floating btn-large waves-effect waves-light red"
+            onClick={this.props.onClick}
+          >
             <i id="mic-button" className="material-icons">mic</i>
           </a>
         </div>
