@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-// import Speech from 'react-speech';
-=======
-import Speech from 'react-speech';
->>>>>>> 011b22c2f3836c3ccbfe45b15ee54400a15070c1
 import Bubble from './bubble';
 import Button from './button';
 
@@ -16,19 +11,51 @@ class ChatBox extends Component {
     };
   }
 
+  componentDidMount() {
+    var msg = new SpeechSynthesisUtterance('I see dead people!');
+msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+speechSynthesis.speak(msg);
+  }
+
   translate() {
+  }
+
   onButtonClick() {
     // speech to text logic
+    console.log("SAY SOMETHING");
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+  		recognition.lang = 'en-AU';
+  		recognition.start();
 
-    // upon complete translation
-    let newList = this.state.messageList.slice();
-    newList.push({
-      text: 'HELLO',
-      isUser: true
-    });
-    this.setState({
-      messageList: newList
-    });
+      recognition.onresult = function(event){
+        var interimTranscripts = '';
+        var finalTranscripts;
+        for(var i = event.resultIndex; i < event.results.length; i++){
+          var transcript = event.results[i][0].transcript;
+          transcript.replace("\n", "<br>");
+          if(event.results[i].isFinal){
+            finalTranscripts += transcript;
+          }else{
+            interimTranscripts += transcript;
+          }
+        }
+        console.log(finalTranscripts + " " + interimTranscripts);
+        // r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
+        // upon complete translation
+        let newList = this.state.messageList.slice();
+        newList.push({
+          text: 'HELLO',
+          isUser: true
+        });
+        this.setState({
+          messageList: newList
+        });
+  		};
+
+    }
 
     // upon receive response
   }
@@ -55,8 +82,6 @@ class ChatBox extends Component {
         <div className="container" style={styles.containerStyle}>
           {this.renderMessages()}
         </div>
-
-        {/* <VoiceRecognition /> */}
 
         <Button onClick={this.onButtonClick.bind(this)} />
       </div>
