@@ -23,7 +23,7 @@ class ChatBox extends Component {
 
 const styles = {
   containerStyle: {
-    height: '700px'
+    paddingTop: '0.5rem'
   },
   textStyle: {
     display: 'flex',
