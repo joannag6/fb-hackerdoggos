@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Speech from 'react-speech';
 import Bubble from './bubble';
 import Button from './button';
 
@@ -12,29 +13,45 @@ class ChatBox extends Component {
   }
 
   onButtonClick() {
-    console.log("HELLO");
+    // speech to text logic
+
+    // upon complete translation
+    let newList = this.state.messageList.slice();
+    newList.push({
+      text: 'HELLO',
+      isUser: true
+    });
+    this.setState({
+      messageList: newList
+    });
+
+    // upon receive response
+  }
+
+  addMessage() {
+
+  }
+
+  renderMessages() {
+    return this.state.messageList.map(({isUser, text}, index) => {
+      return (
+        <Bubble
+          key={index}
+          isUser={isUser}>
+          {text}
+        </Bubble>
+      );
+    });
   }
 
   render() {
     return (
       <div>
         <div className="container" style={styles.containerStyle}>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
-          <Bubble isUser={true}>HELLO</Bubble>
-          <Bubble isUser={false}>HELLO</Bubble>
+          {this.renderMessages()}
         </div>
+
+        {/* <VoiceRecognition /> */}
 
         <Button onClick={this.onButtonClick.bind(this)} />
       </div>
