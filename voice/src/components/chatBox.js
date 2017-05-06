@@ -27,6 +27,8 @@ class ChatBox extends Component {
     const msg = new SpeechSynthesisUtterance(`Hey! I'm Voice!`);
     msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
     speechSynthesis.speak(msg);
+
+    scroll = setInterval(function(){ window.scrollBy(0, 1000); console.log('start');}, 1500);
   }
 
   onRecord() {
