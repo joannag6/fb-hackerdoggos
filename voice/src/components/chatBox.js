@@ -7,14 +7,14 @@ class ChatBox extends Component {
     super(props);
 
     this.state = {
-      messageList: []
+      messages: []
     };
   }
 
   componentDidMount() {
-    var msg = new SpeechSynthesisUtterance('I see dead people!');
-msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
-speechSynthesis.speak(msg);
+    const msg = new SpeechSynthesisUtterance('I see dead people!');
+    msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
+    speechSynthesis.speak(msg);
   }
 
   translate() {
@@ -45,13 +45,13 @@ speechSynthesis.speak(msg);
         console.log(finalTranscripts + " " + interimTranscripts);
         // r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
         // upon complete translation
-        let newList = this.state.messageList.slice();
+        let newList = this.state.messages.slice();
         newList.push({
           text: 'HELLO',
           isUser: true
         });
         this.setState({
-          messageList: newList
+          messages: newList
         });
   		};
 
@@ -65,7 +65,7 @@ speechSynthesis.speak(msg);
   }
 
   renderMessages() {
-    return this.state.messageList.map(({isUser, text}, index) => {
+    return this.state.messages.map(({isUser, text}, index) => {
       return (
         <Bubble
           key={index}
