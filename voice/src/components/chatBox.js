@@ -106,7 +106,14 @@ class ChatBox extends Component {
   }
 
   addMessage() {
-
+    let newList = this.state.messages.slice();
+    newList.push({
+      text: 'Bambi just posted this:   (summary)',
+      isUser: false
+    });
+    this.setState({
+      messages: newList
+    });
   }
 
   renderMessages() {
