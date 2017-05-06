@@ -85,7 +85,7 @@ class Bubble extends Component {
             return this.props.data['song']
           } else {
           return (
-            <img src={this.props.data['image_url']} />
+            <img src={this.props.data['image_url']} style={{width:'100%'}} />
             );
           }
         }
