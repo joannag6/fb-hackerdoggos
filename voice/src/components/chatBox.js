@@ -16,6 +16,20 @@ class ChatBox extends Component {
       <div className="container" style={styles.containerStyle}>
         <Bubble isUser={true}>HELLO</Bubble>
         <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
+        <Bubble isUser={true}>HELLO</Bubble>
+        <Bubble isUser={false}>HELLO</Bubble>
       </div>
     );
   }
