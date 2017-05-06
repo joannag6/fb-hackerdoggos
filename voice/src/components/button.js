@@ -11,8 +11,13 @@ class Button extends Component {
 
   toggle() {
     this.setState({
-      isOn: !isOn
+      isOn: !this.state.isOn
     });
+  }
+
+  onClick() {
+    this.toggle();
+    this.props.onClick();
   }
 
   renderButton() {
@@ -21,7 +26,7 @@ class Button extends Component {
         <a
           id="mic-container"
           className="btn-floating btn-large waves-effect waves-light red"
-          onClick={this.props.onClick}
+          onClick={this.onClick}
         >
           <i id="mic-button" className="material-icons">mic</i>
         </a>
@@ -31,7 +36,7 @@ class Button extends Component {
         <a
           id="mic-container"
           className="btn-floating btn-large waves-effect waves-light red"
-          onClick={this.props.onClick}
+          onClick={this.onClick}
         >
           <i id="mic-button" className="material-icons">mic</i>
         </a>
