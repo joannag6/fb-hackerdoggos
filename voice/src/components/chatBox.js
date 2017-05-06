@@ -108,7 +108,7 @@ class ChatBox extends Component {
     // Send a POST request
     axios({
       method: 'post',
-      url: 'http://172.22.112.93:1337/hackerdoggos/api/v1/query',
+      url: 'https://voice-backend.herokuapp.com/hackerdoggos/api/v1/query',
       data: {
         text: data,
         token
