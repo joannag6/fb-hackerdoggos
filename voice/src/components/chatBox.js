@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Bubble from './bubble';
 import Button from './button';
+import axios from 'axios';
 
 class ChatBox extends Component {
   constructor(props) {
@@ -14,12 +15,10 @@ class ChatBox extends Component {
   }
 
   componentDidMount() {
-    const msg = new SpeechSynthesisUtterance('I see dead people!');
+    const msg = new SpeechSynthesisUtterance(`Hey! I'm Voice!`);
     msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
     speechSynthesis.speak(msg);
-  }
 
-  translate() {
   }
 
   onRecord() {
@@ -73,7 +72,15 @@ class ChatBox extends Component {
 
   onStop() {
     this.recognition.stop();
-    console.log("STOP");
+    const { messages } = this.state;
+    const lastMessage = messages[messages.length-1];
+
+    axios.post('http://172.22.112.93:23232/', {
+      text: lastMessage
+    }).then((res) => {
+      console.log(res);
+    });
+
   }
 
   addMessage() {
