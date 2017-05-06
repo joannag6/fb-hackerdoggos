@@ -6,14 +6,14 @@ class Header extends Component {
       <div className="navbar-fixed">
         <nav className="header-green" role="navigation">
           <div className="nav-wrapper container">
-            <a
+            <div
               id="logo-container"
               href="#"
               className="brand-logo center"
-              style={{fontFamily: 'Pacifico', textShadow: '1px 1px black'}}
-            >
-              Voice
-            </a>
+              style={{color: '#319626', cursor: 'default', fontFamily: 'Pacifico'}}>
+              <span>Voice</span>
+              <img id="logo-image" src="media/logo.png" alt="logo"/>
+            </div>
           </div>
         </nav>
       </div>

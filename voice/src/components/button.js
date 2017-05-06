@@ -8,7 +8,7 @@ class Button extends Component {
       isOn: false
     };
 
-    this.notification = new Audio("sounds/message-sent.mp3");
+    this.notification = new Audio("media/message-sent.mp3");
   }
 
   toggle() {
