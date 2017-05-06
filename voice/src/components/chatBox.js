@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 // import Speech from 'react-speech';
+=======
+import Speech from 'react-speech';
+>>>>>>> 011b22c2f3836c3ccbfe45b15ee54400a15070c1
 import Bubble from './bubble';
 import Button from './button';
 
@@ -51,6 +55,8 @@ class ChatBox extends Component {
         <div className="container" style={styles.containerStyle}>
           {this.renderMessages()}
         </div>
+
+        {/* <VoiceRecognition /> */}
 
         <Button onClick={this.onButtonClick.bind(this)} />
       </div>
