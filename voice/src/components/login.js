@@ -59,19 +59,37 @@ class Login extends Component {
   render() {
     console.log(this.state.loggedIn);
     if (this.state.loggedIn) {
+      document.body.className = '';
       return (
         <Route>
           <Redirect push to="/main"/>
         </Route>
       );
     }
+
+    document.body.className += 'not-logged-in';
     return (
-      <a
-        className="btn btn-block btn-social btn-facebook share s_facebook"
-        onClick={this.onClick.bind(this)}
-      >
-        <span className="fa fa-facebook"></span>Login with Facebook
-      </a>
+      <div className="login-container">
+        <img id="big-logo-image" src="media/logo.png" alt="logo"/>
+        <div style={{
+          color: '#319626',
+          cursor: 'default',
+          fontFamily: 'Pacifico',
+          fontSize: '3em',
+          marginBottom: '20px',
+          marginTop: '-15px',
+          textAlign: 'center',
+          textShadow: '2px 2px 1px white'
+        }}>Voice</div>
+
+        <a
+          className="btn btn-facebook blue"
+          onClick={this.onClick.bind(this)}
+        >
+          <span className="fa fa-facebook-official" style={{marginRight: '10px'}}></span>
+          Login with Facebook
+        </a>
+      </div>
     );
   }
 }
