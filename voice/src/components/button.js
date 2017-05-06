@@ -20,27 +20,22 @@ class Button extends Component {
     this.props.onClick();
   }
 
-  renderButton() {
+  getButtonClasses() {
+    if (this.state.isOn) {
+      return ("animation pulse infinite");
+    }
+    return ("");
+  }
+
+  renderIcon() {
     if (this.state.isOn) {
       return (
-        <a
-          id="mic-container"
-          className="btn-floating btn-large waves-effect waves-light red"
-          onClick={this.onClick}
-        >
-          <i id="mic-button" className="material-icons">mic</i>
-        </a>
+        <i id="mic-button" className="material-icons">pause</i>
       );
-    } else{
+    } else {
       return (
-        <a
-          id="mic-container"
-          className="btn-floating btn-large waves-effect waves-light red"
-          onClick={this.onClick}
-        >
-          <i id="mic-button" className="material-icons">mic</i>
-        </a>
-      );
+        <i id="mic-button" className="material-icons">mic</i>
+      )
     }
   }
 
@@ -48,7 +43,13 @@ class Button extends Component {
     return (
       <footer className="page-footer">
         <div className="footer-copyright light-grey">
-          {this.renderButton()}
+          <a
+            id="mic-container"
+            className={"btn-floating btn-large waves-effect waves-light red " + this.getButtonClasses()}
+            onClick={() => this.onClick()}
+          >
+            { this.renderIcon() }
+          </a>
         </div>
       </footer>
     );
