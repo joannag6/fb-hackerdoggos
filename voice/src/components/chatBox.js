@@ -69,6 +69,15 @@ class ChatBox extends Component {
   }
 
   onStop() {
+    // Removes empty "..." if no input received.
+    if (this.state.messages[this.state.messages.length-1].text === "...") {
+      let newList = this.state.messages.slice();
+      newList.pop();
+      this.setState({
+        messages: newList
+      });
+    }
+
     this.recognition.stop();
     console.log("STOP");
   }
