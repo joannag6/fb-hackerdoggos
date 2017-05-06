@@ -9,7 +9,6 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducers from './reducers';
 import './App.css';
-import Header from './components/header';
 import ChatBox from './components/chatBox';
 import Login from './components/login';
 
@@ -41,8 +40,6 @@ class App extends Component {
       <Provider store={createStoreWithMiddleware(reducers)}>
         <Router>
           <div>
-            <Header />
-
             <Route exact path="/" component={Login}/>
             <Route path="/main" component={ChatBox}/>
           </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './header';
 import Bubble from './bubble';
 import Button from './button';
 import axios from 'axios';
@@ -131,6 +132,7 @@ class ChatBox extends Component {
   render() {
     return (
       <div>
+        <Header />
         <div className="container" style={styles.containerStyle}>
           {this.renderMessages()}
         </div>
