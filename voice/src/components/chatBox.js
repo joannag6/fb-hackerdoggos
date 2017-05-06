@@ -6,6 +6,8 @@ class ChatBox extends Component {
   constructor(props) {
     super(props);
 
+    this.recognition = new window.webkitSpeechRecognition();
+
     this.state = {
       messages: []
     };
@@ -20,18 +22,27 @@ class ChatBox extends Component {
   translate() {
   }
 
-  onButtonClick() {
+  onRecord() {
     // speech to text logic
     console.log("SAY SOMETHING");
     if ('webkitSpeechRecognition' in window) {
-      const recognition = new window.webkitSpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-  		recognition.lang = 'en-AU';
-  		recognition.start();
+      this.recognition.continuous = true;
+      this.recognition.interimResults = true;
+  		this.recognition.lang = 'en-AU';
+  		this.recognition.start();
       let finalTranscripts = ''
 
-      recognition.onresult = function(event){
+      const instance = this;
+      let newList = instance.state.messages.slice();
+      newList.push({
+        text: '',
+        isUser: true
+      });
+      instance.setState({
+        messages: newList
+      });
+
+      this.recognition.onresult = function(event){
         let interimTranscripts = '';
         for (let i = event.resultIndex; i < event.results.length; i++){
           let transcript = event.results[i][0].transcript;
@@ -43,21 +54,26 @@ class ChatBox extends Component {
           }
         }
         console.log(finalTranscripts + " " + interimTranscripts);
-        // r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
-        // upon complete translation
-        let newList = this.state.messages.slice();
-        newList.push({
-          text: 'HELLO',
-          isUser: true
-        });
-        this.setState({
+
+        // update the most recent message with text
+        let newList = instance.state.messages.slice();
+        newList[newList.length-1].text = finalTranscripts + " " + interimTranscripts;
+        instance.setState({
           messages: newList
         });
+
+        // r.innerHTML = finalTranscripts + '<span style="color:#999">' + interimTranscripts + '</span>';
+        // upon complete translation
   		};
 
     }
 
     // upon receive response
+  }
+
+  onStop() {
+    this.recognition.stop();
+    console.log("STOP");
   }
 
   addMessage() {
@@ -84,8 +100,8 @@ class ChatBox extends Component {
         </div>
 
         <Button
-          onClick={this.onButtonClick.bind(this)}
-          onMouseOver={this.onMouseUp.bind(this)} />
+          onRecord={this.onRecord.bind(this)}
+          onStop={this.onStop.bind(this)} />
       </div>
     );
   }

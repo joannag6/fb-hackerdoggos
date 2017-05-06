@@ -16,8 +16,14 @@ class Button extends Component {
   }
 
   onClick() {
+    if (this.state.isOn) {
+      console.log("ON SO I HAVE TO STOP");
+      this.props.onStop();
+    } else {
+      console.log("OFF SO I HAVE TO ON");
+      this.props.onRecord();
+    }
     this.toggle();
-    this.props.onClick();
   }
 
   getButtonClasses() {
