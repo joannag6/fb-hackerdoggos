@@ -10,8 +10,8 @@
   display: block;
   height: auto;
   margin: 0 auto;
-  min-width: 180px;
-  padding: 5px 10px;
+  min-width: 185px;
+  padding: 5px 7px;
   width: 20%;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .btn-facebook {
-  background-color: #3B5998 !important; /* FB blue */
+  background: linear-gradient(to bottom, #446EA9 0%,#446EA9 55%,#000000 55%,#3B5998 55%,#3B5998 100%);
   font-family: "Helvetica Neue", helvetica;
   text-transform: none;
 }
@@ -48,6 +48,13 @@
   margin-bottom: 5px;
   object-fit: cover;
   vertical-align: middle;
+}
+
+#display-name {
+  color: #92DB3A;
+  font-weight: 200;
+  line-height: initial;
+  margin: 10px;
 }
 
 .icon-block {

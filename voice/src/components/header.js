@@ -8,8 +8,9 @@ class Header extends Component {
     if (this.props.user.user !== {}) {
 
       return (
-        <a className="right" style={{cursor: 'pointer'}}>
+        <a className="right">
           <img id="profile-pic" src={this.props.user.user.photoURL} />
+          <div id="display-name">{this.props.user.user.displayName}</div>
         </a>
       );
     }
@@ -24,7 +25,7 @@ class Header extends Component {
               href="#"
               className="brand-logo center">
               <span style={{color: '#319626', cursor: 'default', fontFamily: 'Pacifico'}}>Voice</span>
-              <img id="logo-image" src="media/logo.png" style={{marginLeft: '10px'}} alt="logo"/>
+              <img id="logo-image" src="media/logo.png" alt="logo"/>
             </div>
             {this.renderStatus()}
           </div>
