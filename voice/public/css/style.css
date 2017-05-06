@@ -8,6 +8,7 @@
 
 body {
   background-color: #e8efe8;
+  height: 700px;
 }
 
 .light-green-gray {
@@ -27,4 +28,14 @@ body {
 
 #mic-button {
   align-items: center;
+}
+
+#mic-container {
+  margin: 0 auto;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 }
