@@ -19,7 +19,7 @@ class ChatBox extends Component {
     msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name === 'Whisper'; })[0];
     speechSynthesis.speak(msg);
   }
-  
+
   onRecord() {
     // speech to text logic
     console.log("SAY SOMETHING");
@@ -83,10 +83,12 @@ class ChatBox extends Component {
     const { messages } = this.state;
     const lastMessage = messages[messages.length-1];
 
-    axios.post('http://172.22.112.93:23232/', {
+    axios.post('http://172.22.112.93:23232/hackerdoggos/api/v1/query', {
       text: lastMessage
     }).then((res) => {
       console.log(res);
+    }).catch((err) => {
+      console.log(err);
     });
 
   }
