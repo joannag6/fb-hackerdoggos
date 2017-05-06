@@ -61,34 +61,39 @@ class Bubble extends Component {
     );
   }
 
-  parseMessage() {
-
-  }
-
   renderContent() {
     if (this.props.isUser) {
       return ( this.props.data );
+    } else if (this.props.data === '...') {
+      return (this.props.data);
+    } else if (this.props.data.intent === undefined) {
+      return ;
     }
 
-    if (this.props.data.intent === "birthday") {
-      return ( this.props.data.name + "'s birthday is on " + this.formatDate(this.props.data.birthday.split("/")) + "." );
-    } else if (this.props.data.intent === "latest_post") {
+    console.log("RENDERING CONTENT");
+    console.log(this.props.data);
 
-      let latestPost = this.props.data.data[4]; // only get first one
+    switch (this.props.data.intent.type) {
+      case 'get_birthday':
+        return ( this.props.data.intent.person + "'s birthday is on " + this.formatDate(this.props.data.birthday.birthday.split("/")) + "." );
+      case 'get_recent_posts':
+        console.log("RECENT POSTS");
+        console.log(this.props.data);
 
-      var parsedStory = this.parseStory(latestPost.story);
+        let latestPost = this.props.data.feed.data[0]; // only get first one
 
-      return (
-        <div>
-          <div className="summary">{"Here's the latest "} { this.renderPostLink(latestPost.id) } { "on " + this.props.data.name + "'s timeline." }</div>
-          <div className="fb-post-card">
-            <div> { this.parseStory(latestPost.story) } </div>
-            <div style={{ color: '#90949c', fontSize: '0.9em', fontWeight: '200', marginBottom: '10px' }}> { this.formatDateTime(latestPost.created_time) } </div>
-            <div > { latestPost.message } </div>
+        var parsedStory = this.parseStory(latestPost.story);
+
+        return (
+          <div>
+            <div className="summary">{"Here's the latest "} { this.renderPostLink(latestPost.id) } { "on " + this.props.data.intent.person + "'s timeline." }</div>
+            <div className="fb-post-card">
+              <div> { this.parseStory(latestPost.story) } </div>
+              <div style={{ color: '#90949c', fontSize: '0.9em', fontWeight: '200', marginBottom: '10px' }}> { this.formatDateTime(latestPost.created_time) } </div>
+              <div > { latestPost.message } </div>
+            </div>
           </div>
-        </div>
-      );
-      // <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fbambimac%2Fposts%2F10157659674270581&width=500&show_text=true&height=497&appId" width="300" height="300" style={{border:'none', borderRadius:'15px', borderTopLeftRadius: '0px', borderTopRightRadius: '0px', overflow:'hidden'}} scrolling="no" allowTransparency="true"></iframe>
+        );
     }
   }
 

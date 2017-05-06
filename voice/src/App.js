@@ -29,10 +29,10 @@ class App extends Component {
 
     var user = firebase.auth().currentUser;
 
-    if (user) {
-      // User is signed in.
-      firebase.auth.signOut();
-    }
+    // if (user) {
+    //   // User is signed in.
+    //   firebase.auth.signOut();
+    // }
   }
 
   render() {
