@@ -28,3 +28,13 @@ body {
 #mic-button {
   align-items: center;
 }
+
+#mic-container {
+  margin: 0 auto;
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}

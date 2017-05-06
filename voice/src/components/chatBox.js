@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Header extends Component {
+class ChatBox extends Component {
   render() {
     return (
       <nav class="light-blue lighten-1" role="navigation">
@@ -11,4 +11,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default ChatBox;
