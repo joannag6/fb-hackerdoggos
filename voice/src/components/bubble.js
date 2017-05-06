@@ -3,19 +3,24 @@ import React, { Component } from 'react';
 class Bubble extends Component {
   render() {
     return (
-      <div className="card" style={styles.cardStyle}>
+      
+      <div className="card" style={this.getStyles().cardStyle}>
         {this.props.children}
       </div>
     );
   }
+
+  getStyles() {
+    return ({
+      cardStyle: {
+        width: '200px',
+        float: (this.props.isUser) ? 'right' : 'left',
+        borderRadius: '30'
+      }
+    });
+  }
 }
 
-const styles = {
-  cardStyle: {
-    width: '200px',
-    float: 'right',
-    borderRadius: '30'
-  }
-};
+
 
 export default Bubble;
