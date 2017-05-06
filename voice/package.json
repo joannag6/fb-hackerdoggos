@@ -7,12 +7,9 @@
     "firebase": "^3.9.0",
     "react": "15.5.4",
     "react-dom": "15.5.4",
-<<<<<<< HEAD
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-=======
     "react-sound": "^0.6.1",
->>>>>>> a27d726dc8c366da5b512b4649594e6055d59fd8
     "react-speech": "^0.3.2"
   },
   "devDependencies": {

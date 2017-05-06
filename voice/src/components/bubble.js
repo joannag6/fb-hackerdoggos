@@ -15,6 +15,7 @@ class Bubble extends Component {
     return ({
       cardStyle: {
         borderRadius: '20px',
+        boxShadow: '4px 4px 2px 0 rgba(0, 0, 0, 0.14), -1px 3px 5px 0 rgba(0, 0, 0, 0.12), 0 0px 7px -2px rgba(0, 0, 0, 0.2)',
         float: (this.props.isUser) ? 'right' : 'left',
         verticalAlign: 'middle',
         marginBottom: '0.5rem',

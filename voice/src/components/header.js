@@ -13,7 +13,9 @@ class Header extends Component {
               <span>Voice</span>
               <img id="logo-image" src="media/logo.png" alt="logo"/>
             </div>
-            // add facebook log in pp
+            <a className="right" style={{cursor: 'pointer'}}>
+              <img id="profile-pic" src="media/dp.jpg" alt="profile pic"/>
+            </a>
           </div>
         </nav>
       </div>

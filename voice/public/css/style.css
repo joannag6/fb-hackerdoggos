@@ -6,9 +6,15 @@
  * Made By MaterializeCSS.com
  */
 
-#logo-image {
+#logo-image, #profile-pic {
   height: 40px;
   width: 40px;
+}
+
+#profile-pic {
+  border-radius: 2px;
+  margin-bottom: 5px;
+  vertical-align: middle;
 }
 
 .icon-block {
