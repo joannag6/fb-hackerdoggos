@@ -30,7 +30,7 @@ class Header extends Component {
               className="brand-logo center"
               style={{color: '#319626', cursor: 'default', fontFamily: 'Pacifico'}}>
               <span>Voice</span>
-              <img id="logo-image" src="media/logo.png" alt="logo"/>
+              <img id="logo-image" src="media/logo.png" style={{marginLeft: '10px'}} alt="logo"/>
             </div>
             {this.renderStatus()}
           </div>
